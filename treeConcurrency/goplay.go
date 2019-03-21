@@ -39,7 +39,7 @@ func WalkInit(t *tree.Tree, ch chan int) {
 
 func main() {
 	ch := make(chan int)
-	t := tree.New(2)
+	t := tree.New(2, 10)
 	wg.Add(1)
 	go WalkInit(t, ch)
 	for i := range ch {

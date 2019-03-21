@@ -16,10 +16,10 @@ type Tree struct {
 	Right *Tree
 }
 
-// New returns a new, random binary tree holding the values k, 2k, ..., 10k.
-func New(k int) *Tree {
+// New returns a new, random binary tree holding the values k, 2k, ..., nodesNo*k.
+func New(k int, nodesNo int) *Tree {
 	var t *Tree
-	for _, v := range rand.Perm(10) {
+	for _, v := range rand.Perm(nodesNo) {
 		t = insert(t, (1+v)*k)
 	}
 	return t
