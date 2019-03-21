@@ -1,9 +1,9 @@
 package main
 
 import (
+	"ConcurencyTreeBrowser/tree"
 	"fmt"
 	"sync"
-	"tree"
 )
 
 var wg sync.WaitGroup
