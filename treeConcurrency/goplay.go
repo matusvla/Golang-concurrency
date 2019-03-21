@@ -1,7 +1,7 @@
 package main
 
 import (
-	"ConcurencyTreeBrowser/tree"
+	"ConcurrencyTreeBrowser/tree"
 	"fmt"
 	"sync"
 )
@@ -37,6 +37,15 @@ func WalkInit(t *tree.Tree, ch chan int) {
 	close(ch)
 }
 
+func printTreeNoConcurrency(t *tree.Tree) {
+	if t == nil {
+		return
+	}
+	fmt.Println(t.Value)
+	printTreeNoConcurrency(t.Left)
+	printTreeNoConcurrency(t.Right)
+}
+
 func main() {
 	ch := make(chan int)
 	t := tree.New(2, 10)
@@ -46,4 +55,5 @@ func main() {
 		fmt.Println(i)
 	}
 	wg.Wait()
+	printTreeNoConcurrency(t)
 }
