@@ -32,6 +32,7 @@ func WalkInit(t *tree.Tree, ch chan int) {
 		wg.Add(1)
 		go Walk(t.Right, ch)
 	}
+	ch <- t.Value
 	wg.Done()
 	wg.Wait()
 	close(ch)
@@ -55,5 +56,5 @@ func main() {
 		fmt.Println(i)
 	}
 	wg.Wait()
-	printTreeNoConcurrency(t)
+	// printTreeNoConcurrency(t)
 }
