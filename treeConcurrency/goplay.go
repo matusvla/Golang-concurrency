@@ -38,13 +38,13 @@ func WalkInit(t *tree.Tree, ch chan int) {
 	close(ch)
 }
 
-func printTreeNoConcurrency(t *tree.Tree) {
+func displayTreeNoConcurrency(t *tree.Tree) []int {
 	if t == nil {
-		return
+		return nil
 	}
-	fmt.Println(t.Value)
-	printTreeNoConcurrency(t.Left)
-	printTreeNoConcurrency(t.Right)
+
+	return append(append(displayTreeNoConcurrency(t.Left), displayTreeNoConcurrency(t.Right)...), t.Value)
+
 }
 
 func main() {
@@ -56,5 +56,5 @@ func main() {
 		fmt.Println(i)
 	}
 	wg.Wait()
-	// printTreeNoConcurrency(t)
+	fmt.Println(displayTreeNoConcurrency(t))
 }
